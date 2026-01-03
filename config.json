@@ -1,0 +1,192 @@
+{
+    "scales": {
+        "metric": {
+            "name": "Metrisch",
+            "values": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+            ]
+        },
+        "safe": {
+            "name": "SAFe Fibonacci",
+            "values": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                8
+            ]
+        }
+    },
+    "colors": {
+        "complexity": "#cacde6",
+        "effort": "#a9e0e7",
+        "doubt": "#ffa6be",
+        "total": "#efefef",
+        "numberComplexity": "#666666",
+        "numberEffort": "#666666",
+        "numberDoubt": "#666666",
+        "bv": "#abf2ab",
+        "tc": "#f7dc91",
+        "rroe": "#acd2fb",
+        "numberBv": "#666666",
+        "numberTc": "#666666",
+        "numberRrOe": "#666666"
+    },
+    "scaleHelpUrls": {
+        "complexity": "",
+        "effort": "",
+        "doubt": "",
+        "cod_bv": "",
+        "cod_tc": "",
+        "cod_rroe": ""
+    },
+    "defaultColors": {
+        "complexity": "#cacde6",
+        "effort": "#a9e0e7",
+        "doubt": "#ffa6be",
+        "total": "#efefef",
+        "numberComplexity": "#666666",
+        "numberEffort": "#666666",
+        "numberDoubt": "#666666",
+        "bv": "#abf2ab",
+        "tc": "#f7dc91",
+        "rroe": "#acd2fb",
+        "numberBv": "#666666",
+        "numberTc": "#666666",
+        "numberRrOe": "#666666"
+    },
+    "editorColors": {
+        "1": "#279745",
+        "2": "#2560d1",
+        "3": "#937404",
+        "4": "#c90000"
+    },
+    "defaultEditorColors": {
+        "1": "#279745",
+        "2": "#2560d1",
+        "3": "#937404",
+        "4": "#c90000"
+    },
+    "defaultSettings": {
+        "language": "en",
+        "scale": "safe",
+        "tshirtSizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "confirmOnExit": false,
+        "showDemoDataLink": true,
+        "showReferenceMarkers": true
+    },
+    "resolutionSettings": {
+        "minWidth": 1468,
+        "minHeight": 746
+    },
+    "showDemoDataLink": false,
+    "demoData": {
+        "en": {
+            "path": "Business Example - Values (EN).json"
+        },
+        "de": {
+            "path": "Business Example - Values (DE).json"
+        }
+    },
+    "allTshirtSizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+    ],
+    "tshirtSizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+    ],
+    "initialPbis": [],
+    "updateChecker": {
+        "enabled": false,
+        "versionUrl": "https://gist.githubusercontent.com/Sperker/d0481bc71d4d5ee5e660e3d5511f13e6/raw/SizeRightVersion.txt",
+        "downloadUrl": "https://github.com/Sperker/SizeRight"
+    },
+    "pastelColorPalette": [
+        "#DCBCBD",
+        "#B6E2B7",
+        "#B6B6E2",
+        "#B6DDE2",
+        "#EEEBD3",
+        "#E2B6D9",
+        "#DAD7EA",
+        "#C7E6D3",
+        "#D9E2B6",
+        "#E2CDB6",
+        "#EADAD7",
+        "#E6C7DA",
+        "#B6C8E2",
+        "#D6C4E8",
+        "#D7E4EA",
+        "#C5DCBC",
+        "#D3EEE8",
+        "#E2DAB6",
+        "#E2B6C3",
+        "#BCCFDC",
+        "#DEEED3",
+        "#DCC6BC",
+        "#E6D3EE",
+        "#D2B6E2",
+        "#EED3DB",
+        "#B6E2D9",
+        "#C7C7E6",
+        "#B6E2C4",
+        "#E3D9C9",
+        "#C8E2B6",
+        "#DCBCD8",
+        "#D6DCBC",
+        "#DCD6BC",
+        "#EAD7E8",
+        "#E8C4E8",
+        "#D3DEEE",
+        "#D7EADB",
+        "#D7E8C4",
+        "#B6BEE2",
+        "#E7E8C4",
+        "#C4B9DF",
+        "#E2BEB6",
+        "#C4DDE8",
+        "#C7D0E6",
+        "#C9E8C4",
+        "#E2B6B7",
+        "#E3C9CA",
+        "#C9E3E3",
+        "#DCBCC8",
+        "#BCDCC3",
+        "#E2B6E2",
+        "#B6E2CD",
+        "#E8D2C4",
+        "#D6C9E3",
+        "#BCDCD6",
+        "#D3D3EE",
+        "#E2EAD7",
+        "#CFE3C9",
+        "#E8C4CB",
+        "#EAE1D7",
+        "#E2B6CB",
+        "#E8E2C4",
+        "#DEE3C9",
+        "#BCC2DC"
+    ]
+}

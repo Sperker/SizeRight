@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="version" content="0.0.9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estimation Tool</title>
+    <style id="style-placeholder"></style>
+</head>
+
+<body>
+    <div id="resolution-warning" class="hidden">
+        <div class="pbi-list-empty-state">
+            <svg class="empty-state-icon" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                <path d="m313.31 636c-12.574-0.33203-22.922 9.8008-22.922 22.359 0 12.574 10.348 22.707 22.922 22.359h571.17c12.574 0.33203 22.922-9.8008 22.922-22.359 0-12.574-10.348-22.707-22.922-22.359z" fill="currentColor"/>
+                <path d="m1132.3 479.27c12.281 0.21484 22.078 10.281 22.012 22.559v209.65c0 29.719-0.83984 57.012-11.238 82.293-10.359 25.215-32.012 46.188-63.961 58.281l-3.4648 1.3203v147.15c31.375 6.3867 59.094 25.691 75.48 54.027 6.1719 10.707 2.4922 24.441-8.1992 30.625-10.707 6.1719-24.441 2.5586-30.625-8.1992-12.215-21.188-34.652-34.238-59.094-34.238-24.441 0-46.945 13.055-59.16 34.238-6.0391 11.039-20 14.934-30.922 8.6016-10.828-6.2383-14.441-20.266-7.8398-31.039 16.387-28.332 44.094-47.641 75.48-54.027v-130.2l-54.508 20.625c-11.734 5.1328-25.426-0.54688-29.934-12.492-4.5859-12.012 1.8789-25.348 14.027-29.32l102.99-38.879c23.465-8.8125 32.227-18.68 38.332-33.48 6.1211-14.867 7.8516-36.945 7.8516-65.281v-209.65c-0.14844-12.574 10.133-22.773 22.773-22.562z" fill="currentColor"/>
+                <path d="m67.668 479.27c-12.281 0.21484-22.148 10.281-22.012 22.559v209.65c0 29.719 0.83984 57.012 11.188 82.293 10.414 25.215 32.012 46.188 63.961 58.281l3.5352 1.3203v147.15c-31.398 6.3867-59.094 25.691-75.48 54.027-6.1875 10.707-2.5742 24.441 8.1992 30.625 10.676 6.1602 24.367 2.5625 30.543-8.1992 12.227-21.188 34.734-34.238 59.188-34.238 24.453 0 46.934 13.055 59.16 34.238 6.0273 11.039 19.934 14.934 30.828 8.6016 10.895-6.2383 14.453-20.266 7.9062-31.039-16.387-28.332-44.094-47.641-75.48-54.027v-130.2l54.52 20.625c11.668 5.1328 25.332-0.54688 29.922-12.492 4.5195-12.012-1.8672-25.348-14.094-29.32l-102.99-38.879c-23.398-8.8125-32.215-18.68-38.254-33.48-6.1211-14.867-7.9062-36.945-7.9062-65.281l-0.003906-209.65c0.10937-12.574-10.16-22.773-22.73-22.562z" fill="currentColor"/>
+                <path d="m1088.5 452.67v282.77c0 20.973-12.973 39.785-32.84 47.508l-137.77 53.48-35.293 207.69c-9.1602 69.867-116.04 52.309-101.75-16.734l40-236.11c2.9883-17.586 15.078-32.375 31.879-38.895l82.293-31.945v-167.99l-31.934 41.387c-8.2656 8.0547-19.375 12.574-31.055 12.574h-113.05c-58.828 0-58.828-87 0-87h95.078l87.293-95.215c13.602-14.867 28.121-26.453 45.348-26.453h50.066c33.754-0.011719 51.738 30.812 51.738 54.922z" fill="currentColor"/>
+                <path d="m389.2 391.84c-10.281 0-18.398 4.0117-24.012 9.7188l-48.121 48.465 38.812 42.293h82.84c21.602 0 41.266 8.9609 53.691 22.719 12.359 13.746 17.988 30.895 17.988 47.773 0 16.105-5.1328 32.426-16.254 45.828h75.414l1.0273-105.91 48.332 37.16c13.188 10.199 32.707 10.762 43.895-1.5352l71.398-78.762c1.8672-1.6523 4.3086-2.625 6.7852-2.5586h38.762c12.785 0 21.172-3.1992 26.309-7.2148 5.0781-4.0391 7.2383-8.7617 7.3086-14.039 0.066406-10.613-9.5859-25.066-34.668-30.547l-50.613-12.441c-8.4141 0.066406-16.465 3.1328-22.574 8.7617l-60.762 63.105c-3.5352 3.2656-9.0781 3.4805-12.906 0.42578l-81.535-63.535c-7.293-5.707-14.785-9.7188-25.215-9.7188z" fill="currentColor"/>
+                <path d="m363.29 706.35 76.465 108.41v138.12c0 61.879 98.465 61.879 98.465 0l0.003906-142.51-31.734-54.172c-5.1328-11.32 3.5352-15.266 10.414-6.1211l39.719 52.574c0.90625 1.5352 1.3867 3.1992 1.3867 5v145.21c0 61.879 97.586 61.879 97.586 0l0.003906-155.35c0-11.188-3.8281-22.148-10.84-30.973l-41.934-60.215h-239.54z" fill="currentColor"/>
+                <path d="m547.73 296.43c-20.84 47.559-76.734 69.441-125 48.895-48.121-20.426-70.281-75.691-49.508-123.13 20.84-47.574 76.734-69.441 124.85-48.961 48.27 20.547 70.414 75.695 49.656 123.2z" fill="currentColor" fill-rule="evenodd"/>
+                <path d="m109.27 452.67v282.77c0 20.973 13 39.785 32.785 47.508l137.85 53.48 35.266 207.69c9.1055 69.867 116.05 52.309 101.75-16.734l-40-236.11c-3.0547-17.586-15.148-32.375-31.945-38.895l-82.227-31.945 0.003906-167.99 31.879 41.387c8.2656 8.0547 19.453 12.574 31.039 12.574h113.12c58.762 0 58.762-87 0-87h-95.055l-87.309-95.215c-13.668-14.867-28.172-26.453-45.332-26.453h-50.156c-33.68-0.011719-51.668 30.812-51.668 54.922z" fill="currentColor"/>
+                <path d="m92.879 307.88c22.227 50.773 81.961 74.094 133.48 52.16 51.398-21.812 75-80.762 52.852-131.4-22.293-50.762-81.961-74.172-133.27-52.281-51.613 21.934-75.227 80.762-53.066 131.52z" fill="currentColor" fill-rule="evenodd"/>
+                <path d="m1105 307.88c-22.293 50.773-81.934 74.094-133.48 52.16-51.375-21.812-75-80.762-52.852-131.4 22.227-50.762 81.961-74.172 133.28-52.281 51.582 21.934 75.195 80.762 53.051 131.52z" fill="currentColor" fill-rule="evenodd"/>
+                <path d="m749.81 338.84c-11.309 0.42578-22.922-0.89453-34.652-3.9453-29.922-8.0547-53.266-26.547-67.691-50.078l-31.254 4.4414c-10.148 1.4531-14.094-8.1211-7.7188-16.254l23.68-30.281c-2.2266-15.133-1.5352-31.105 2.7188-47 16.32-60.762 76.734-97.012 139.09-80.281 62.359 16.734 96.586 78.332 80.332 139.09-13.254 49.371-55.613 82.586-104.51 84.305zm-62.707-92.348c11.801 0 21.32-9.5859 21.32-21.387 0-11.734-9.5078-21.32-21.32-21.32s-21.387 9.5859-21.387 21.32c0 11.801 9.5898 21.387 21.387 21.387zm57.496 0c11.828 0 21.332-9.5859 21.398-21.387-0.066406-11.734-9.5859-21.32-21.398-21.32-11.801 0-21.387 9.5859-21.387 21.32 0 11.801 9.5859 21.387 21.387 21.387zm57.52 0c11.734 0 21.32-9.5859 21.32-21.387 0-11.734-9.5859-21.32-21.32-21.32-11.879 0-21.387 9.5859-21.387 21.32 0 11.801 9.5039 21.387 21.387 21.387z" fill="currentColor" fill-rule="evenodd"/>
+            </svg>
+            <div class="empty-state-text">
+                <p id="resolution-warning-text"></p>
+                <div id="resolution-warning-ignore">
+                    <button id="resolution-warning-ignore-btn" type="button"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="update-notification-container"></div>
+    <div id="split-root" class="split-root row">
+        <div class="pane pane-left">
+            <div id="pbi-list-container" class="container">
+                <div class="main-title-container">
+                    <h1 id="main-header"></h1>
+                    <span id="main-claim"></span>
+                </div>
+                <div class="switchers">
+                    <button id="add-pbi-btn"></button>
+                    <div class="icon-buttons">
+                        <button id="export-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                                <path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z" />
+                            </svg>
+                        </button>
+                        <button id="btn-csv-export" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                                <path d="M400-280h160v-80H400v80Zm0-160h280v-80H400v80ZM280-600h400v-80H280v80Zm200 120ZM80-80v-80h102q-48-23-77.5-68T75-330q0-79 55.5-134.5T265-520v80q-45 0-77.5 32T155-330q0 39 24 69t61 38v-97h80v240H80Zm320-40v-80h360v-560H200v160h-80v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H400Z"/>
+                            </svg>
+                        </button>
+                        <button id="import-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                                <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5-23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z" />
+                            </svg>
+                        </button>
+                        <button id="settings-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                                <path d="M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80h160v80H680v80h-80Zm-480-80v-80h400v80H120Z" />
+                            </svg>
+                        </button>
+                        
+                        <button id="reset-app-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                                <path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/>
+                            </svg>
+                        </button>
+
+                        <button id="help-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                                <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg>
+                        </button>
+                        <button id="info-btn" title="Info">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                                <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="pbi-filters">
+                    <div class="filter-group">
+                        <button id="filter-job-size-btn" class="filter-btn"></button> <button id="filter-tshirt-size-btn" class="filter-btn"></button>
+                        <button id="filter-cod-btn" class="filter-btn"></button>
+                        <button id="filter-wsjf-btn" class="filter-btn"></button>
+                    </div>
+                    <div class="sort-direction-switcher">
+                        <button id="custom-sort-btn" class="sort-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="currentColor">
+                                <path d="M576-696v-72h288v72H576Zm0 156v-72h288v72H576Zm0 156v-72h288v72H576Zm-240-48q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM96-192v-63q0-28 14.5-51t38.5-35q43-21 90-32t97-11q50 0 97 11t90 32q24 12 38.5 35t14.5 51v63H96Z"/>
+                            </svg>
+                        <button id="sort-asc-btn" class="sort-btn" title="">
+                            <svg class="sort-icon" width="16" height="16" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m199.2 926.4c14.398 21.602 45.602 21.602 61.199 0l162-234c16.801-24 0-57.602-30-57.602h-97.199v-346.8c0-16.801-13.199-30-30-30h-69.602c-16.801 0-30 13.199-30 30v346.8h-98.398c-30 0-46.801 33.602-30 57.602z" />
+                                <path d="m1140 812.4h-583.2c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30h583.2c16.801 0 30-13.199 30-30v-69.602c0-16.797-13.199-30-30-30z" />
+                                <path d="m556.8 666h452.4c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-452.4c-16.801 0-30 13.199-30 30v69.602c0 15.602 13.199 30 30 30z" />
+                                <path d="m556.8 388.8h321.6c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-321.6c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30z" />
+                            </svg>
+                        </button>
+                        <button id="sort-desc-btn" class="sort-btn" title="">
+                            <svg class="sort-icon" width="16" height="16" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m199.2 926.4c14.398 21.602 45.602 21.602 61.199 0l162-234c16.801-24 0-57.602-30-57.602h-97.199v-346.8c0-16.801-13.199-30-30-30h-69.602c-16.801 0-30 13.199-30 30v346.8h-98.398c-30 0-46.801 33.602-30 57.602z" />
+                                <path d="m1140 812.4h-583.2c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30h583.2c16.801 0 30-13.199 30-30v-69.602c0-16.797-13.199-30-30-30z" />
+                                <path d="m556.8 666h452.4c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-452.4c-16.801 0-30 13.199-30 30v69.602c0 15.602 13.199 30 30 30z" />
+                                <path d="m556.8 388.8h321.6c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-321.6c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30z" />
+                            </svg>
+                        </button>
+                        <button id="reset-filters-btn" class="sort-btn" title="">
+                            <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="currentColor">
+                                <path d="m339-288 141-141 141 141 51-51-141-141 141-141-51-51-141 141-141-141-51 51 141 141-141 141 51 51ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/>
+                            </svg>
+                        </button>
+                        <button id="filter-lock-btn" class="sort-btn" title="">
+                            <svg class="sort-icon icon-unlocked" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px">
+                                <path d="M240-640h360v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85h-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640Zm0 480h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM240-160v-400 400Z"/>
+                            </svg>
+                            <svg class="sort-icon icon-locked" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px">
+                                <path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="ref-slot-left" class="ref-slot ref-slot-left"></div>
+                <div id="pbi-list" style="margin-top: 20px;"></div>
+            </div>
+        </div>
+        <div id="split-divider" class="divider vertical" title=""></div>
+        <div class="pane pane-right">
+
+            <div id="view-tabs" class="view-tabs-container">
+                <button id="view-tab-job-size-viz" class="view-tab-btn active"></button>
+                <button id="view-tab-cod-viz" class="view-tab-btn"></button>
+                <button id="view-tab-wsjf-viz" class="view-tab-btn"></button>
+                <button id="view-tab-relative-sizing" class="view-tab-btn"></button>
+            </div>
+
+            <div id="view-panels" class="view-panels-container">
+                <div id="panel-job-size-viz" class="view-panel">
+                    <div id="visualization-legend" class="legend">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background-color: var(--color-complexity);"></div><span id="legend-complexity"></span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background-color: var(--color-effort);"></div><span id="legend-effort"></span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background-color: var(--color-doubt);"></div><span id="legend-doubt"></span>
+                        </div>
+                        <div class="legend-sort-container">
+                            <span id="legend-sort-info"></span>
+                        </div>
+                    </div>
+                    <div id="visualization-container" class="container"></div>
+                </div>
+
+                <div id="panel-cod-viz" class="view-panel hidden">
+                    <div id="cod-visualization-legend" class="legend hidden">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background-color: var(--color-bv);"></div><span id="legend-cod-bv"></span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background-color: var(--color-tc);"></div><span id="legend-cod-tc"></span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background-color: var(--color-rroe);"></div><span id="legend-cod-rroe"></span>
+                        </div>
+                        <div class="legend-sort-container">
+                            <span id="cod-legend-sort-info"></span>
+                        </div>
+                    </div>
+                    <div id="cod-visualization-container" class="container">
+                    </div>
+                </div>
+
+                <div id="panel-wsjf-viz" class="view-panel hidden">
+                    <div id="wsjf-visualization-legend" class="legend hidden">
+                        <div class="legend-sort-container">
+                            <span id="wsjf-legend-sort-info"></span>
+                         </div>
+                    </div>
+                    <div id="wsjf-visualization-container" class="container">
+                        </div>
+                </div>
+
+                <div id="panel-relative-sizing" class="view-panel hidden">
+                    <div id="relative-sizing-header" class="relative-sizing-header">
+                        <div class="rs-group-header-container">
+                            <div id="rs-group-header-job-size" class="rs-group-header rs-group-job-size"></div>
+                            <div id="rs-group-header-cod" class="rs-group-header rs-group-cod"></div>
+                            <div id="rs-group-header-wsjf" class="rs-group-header rs-group-wsjf"></div>
+                        </div>
+
+                        
+                        <div class="rs-col-header-container rs-grid">
+                            <div class="rs-col-header" data-sort-by="complexity">
+                                <span id="rs-col-header-complexity" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-complexity" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="effort">
+                                <span id="rs-col-header-effort" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-effort" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="doubt">
+                                <span id="rs-col-header-doubt" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-doubt" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="jobSize">
+                                <span id="rs-col-header-job-size" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-job-size" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="cod_bv">
+                                <span id="rs-col-header-bv" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-bv" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="cod_tc">
+                                <span id="rs-col-header-tc" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-tc" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="cod_rroe">
+                                <span id="rs-col-header-rroe" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-rroe" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="cod">
+                                <span id="rs-col-header-cod" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-cod" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rs-col-header" data-sort-by="wsjf">
+                                <span id="rs-col-header-wsjf" class="rs-header-text"></span>
+                                <div class="rs-header-icons">
+                                    <button class="highlight-btn" id="highlight-btn-wsjf" title="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z"/></svg>
+                                    </button>
+                                    <span class="sort-indicator sort-default-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                            <path d="M232-444v-72h496v72H232Z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="sort-indicator sort-asc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path transform="rotate(180 480 -480)" d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                    <span class="sort-indicator sort-desc-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-384 288-576h384L480-384Z"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ref-slot-right" class="ref-slot ref-slot-right"></div>
+                    <div id="relative-sizing-list" class="relative-sizing-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="csv-export-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="csv-export-modal-title"></h2>
+            
+            <div class="settings-group">
+                <p id="csv-export-text"></p>
+            </div>
+
+            <div class="settings-group">
+                <div class="pbi-filters" style="border:none; margin-top:0; padding:0;">
+                    <div class="filter-group">
+                        <button id="csv-sort-btn-job-size" class="filter-btn"></button>
+                        <button id="csv-sort-btn-tshirt-size" class="filter-btn"></button>
+                        <button id="csv-sort-btn-cod" class="filter-btn"></button>
+                        <button id="csv-sort-btn-wsjf" class="filter-btn"></button>
+                    </div>
+                    <div class="sort-direction-switcher">
+
+                        <button id="csv-sort-asc-btn" class="sort-btn" title="">
+                            <svg class="sort-icon" width="16" height="16" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m199.2 926.4c14.398 21.602 45.602 21.602 61.199 0l162-234c16.801-24 0-57.602-30-57.602h-97.199v-346.8c0-16.801-13.199-30-30-30h-69.602c-16.801 0-30 13.199-30 30v346.8h-98.398c-30 0-46.801 33.602-30 57.602z" />
+                                <path d="m1140 812.4h-583.2c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30h583.2c16.801 0 30-13.199 30-30v-69.602c0-16.797-13.199-30-30-30z" />
+                                <path d="m556.8 666h452.4c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-452.4c-16.801 0-30 13.199-30 30v69.602c0 15.602 13.199 30 30 30z" />
+                                <path d="m556.8 388.8h321.6c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-321.6c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30z" />
+                            </svg>
+                        </button>
+                        
+                        <button id="csv-sort-desc-btn" class="sort-btn" title="">
+                            <svg class="sort-icon" width="16" height="16" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m199.2 926.4c14.398 21.602 45.602 21.602 61.199 0l162-234c16.801-24 0-57.602-30-57.602h-97.199v-346.8c0-16.801-13.199-30-30-30h-69.602c-16.801 0-30 13.199-30 30v346.8h-98.398c-30 0-46.801 33.602-30 57.602z" />
+                                <path d="m1140 812.4h-583.2c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30h583.2c16.801 0 30-13.199 30-30v-69.602c0-16.797-13.199-30-30-30z" />
+                                <path d="m556.8 666h452.4c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-452.4c-16.801 0-30 13.199-30 30v69.602c0 15.602 13.199 30 30 30z" />
+                                <path d="m556.8 388.8h321.6c16.801 0 30-13.199-30-30v-69.602c0-16.801-13.199-30-30-30h-321.6c-16.801 0-30 13.199-30 30v69.602c0 16.801 13.199 30 30 30z" />
+                            </svg>
+                        </button>
+
+                        <button id="csv-sort-custom-btn" class="sort-btn" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="currentColor">
+                                <path d="M576-696v-72h288v72H576Zm0 156v-72h288v72H576Zm0 156v-72h288v72H576Zm-240-48q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM96-192v-63q0-28 14.5-51t38.5-35q43-21 90-32t97-11q50 0 97 11t90 32q24 12 38.5 35t14.5 51v63H96Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="csv-export-sort-status"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btn-csv-export-cancel"></button>
+                <button id="btn-csv-export-confirm"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="reset-app-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="reset-app-modal-title"></h2>
+            
+            <div class="settings-group">
+                <p id="reset-app-text"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button id="reset-app-cancel-btn"></button> 
+                <button id="reset-app-export-btn"></button>
+                <button id="reset-app-confirm-btn"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="info-modal-title"></h2>
+
+            <div class="settings-grid-layout">
+                
+                <div class="settings-col">
+                    <div class="settings-group">
+                        <strong id="info-weblink-label"></strong>
+                        <p id="info-weblink-sentence"></p>
+                    </div>
+
+                    <div class="settings-group">
+                        <strong id="info-about-label"></strong>
+                        <div id="version-info-container">
+
+                            <div id="info-entry-version">
+                                <span id="info-version-label"></span>
+                                <span id="info-version-value"></span>
+                            </div>
+                            <div id="info-entry-build">
+                                <span id="info-build-label"></span>
+                                <span id="info-build-value"></span>
+                            </div>
+                            <div id="info-about-divider"></div>
+                            <div id="info-entry-contact">
+                                <span id="info-contact-label"></span>
+                                <span id="info-contact-value"></span>
+                            </div>
+                            <div id="info-entry-function">
+                                <span id="info-function-label"></span>
+                                <span id="info-function-value"></span>
+                            </div>
+                            <div id="info-entry-email">
+                                <span id="info-email-label"></span>
+                                <span id="info-email-value"></span>
+                            </div>
+                            <div id="info-entry-department">
+                                <span id="info-department-label"></span>
+                                <span id="info-department-value"></span>
+                            </div>
+                            <div id="info-entry-company">
+                                <span id="info-company-label"></span>
+                                <span id="info-company-value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-col">
+                    <div class="modal-tabs info-modal-tabs" style="margin-top: 0px; margin-bottom: 10px;">
+                        <button id="info-tab-btn-software" class="tab-btn active"></button>
+                        <button id="info-tab-btn-thirdparty" class="tab-btn"></button>
+                    </div>
+
+                    <div id="info-tab-content-software" class="info-tab-content">
+                        <div class="settings-group" style="margin-top: 0;">
+                            <div class="info-license-designation">
+                                <strong><span id="info-license-designation-software"></span></strong>
+                            </div>
+                            <textarea readonly id="info-license-text"></textarea>
+                            <div class="info-license-link-container">
+                                <a id="info-license-link-software" href="https://github.com/Sperker/SizeRight" target="_blank" rel="noopener" class="info-license-link"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="info-tab-content-thirdparty" class="info-tab-content hidden">
+                        <div class="settings-group" style="margin-top: 0;">
+                             <div class="info-license-designation">
+                                <strong><span id="info-license-designation-thirdparty"></span></strong>
+                            </div>
+                            <textarea readonly id="info-license-text-thirdparty"></textarea>
+                            <div class="info-license-link-container">
+                                <a id="info-license-link-thirdparty" href="https://github.com/SortableJS/Sortable/" target="_blank" rel="noopener" class="info-license-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div style="margin-top: 24px; text-align: right;">
+                <button id="info-close-btn"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            
+            <div class="modal-nav-header">
+                <button id="modal-prev-btn" class="modal-nav-text-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                    <span id="modal-prev-label"></span>
+                </button>
+                <span id="modal-nav-info"></span>
+                <button id="modal-next-btn" class="modal-nav-text-btn">
+                    <span id="modal-next-label"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+            </div>
+
+            <input type="hidden" id="pbi-id">
+            <div class="modal-title-header">
+                <h2 id="modal-title"></h2>
+                <input type="text" id="pbi-title">
+                <div class="modal-tags-container">
+                    <span id="modal-tshirt-display" class="modal-tag modal-tag-tshirt">
+                        <span class="modal-tag-label"></span>
+                        <span class="modal-tag-value"></span>
+                    </span>
+                    <span id="modal-wsjf-display" class="modal-tag modal-tag-wsjf">
+                        <span class="modal-tag-label"></span>
+                        <span class="modal-tag-value"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="modal-body-split">
+                <div class="modal-column-left">
+                    <div class="modal-tabs">
+                        <button id="tab-btn-jobsize" class="tab-btn active"></button>
+                        <button id="tab-btn-cod" class="tab-btn"></button>
+                    </div>
+
+                    <div id="tab-content-jobsize" class="tab-content">
+                        <div id="jobsize-hint" class="modal-hint"></div>
+                        <div id="modal-scales">
+                            <div id="scale-container">
+                                <label for="pbi-complexity" id="modal-complexity-label">
+                                    <span class="label-text"></span>
+                                    <a id="help-icon-complexity" class="info-icon-link" href="#" target="_blank" title="Open documentation">
+                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="slider-value" id="complexity-value"></span>
+                                </label>
+                                <input type="range" id="pbi-complexity" min="0" value="0">
+                                <div class="slider-scale" data-slider-id="pbi-complexity"></div>
+                            </div>
+                            <div id="scale-container">
+                                <label for="pbi-effort" id="modal-effort-label">
+                                    <span class="label-text"></span>
+                                    <a id="help-icon-effort" class="info-icon-link" href="#" target="_blank" title="Open documentation">
+                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="slider-value" id="effort-value"></span>
+                                </label>
+                                <input type="range" id="pbi-effort" min="0" value="0">
+                                <div class="slider-scale" data-slider-id="pbi-effort"></div>
+                            </div>
+                            <div id="scale-container">
+                                <label for="pbi-doubt" id="modal-doubt-label">
+                                    <span class="label-text"></span>
+                                    <a id="help-icon-doubt" class="info-icon-link" href="#" target="_blank" title="Open documentation">
+                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="slider-value" id="doubt-value"></span>
+                                </label>
+                                <input type="range" id="pbi-doubt" min="0" value="0">
+                                <div class="slider-scale" data-slider-id="pbi-doubt"></div>
+                            </div>
+                        </div>
+                        <div class="modal-reset-container">
+                            <button type="button" id="reset-job-size-btn"></button>
+                            <button type="button" id="toggle-ref-markers-btn" style="margin-left: 10px; display: none;"></button>
+                        </div>
+                    </div>
+
+                    <div id="tab-content-cod" class="tab-content hidden">
+                        <div id="cod-hint" class="modal-hint"></div>
+                        
+                        <div id="modal-scales">
+                            <div id="scale-container">
+                                <label for="pbi-cod-bv" id="modal-cod-bv-label">
+                                    <span class="label-text"></span>
+                                    <a id="help-icon-cod_bv" class="info-icon-link" href="#" target="_blank" title="Open documentation">
+                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="slider-value" id="cod-bv-value"></span>
+                                </label>
+                                <input type="range" id="pbi-cod-bv" min="0" value="0">
+                                <div class="slider-scale" data-slider-id="pbi-cod-bv"></div>
+                            </div>
+                            <div id="scale-container">
+                                <label for="pbi-cod-tc" id="modal-cod-tc-label">
+                                    <span class="label-text"></span>
+                                    <a id="help-icon-cod_tc" class="info-icon-link" href="#" target="_blank" title="Open documentation">
+                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="slider-value" id="cod-tc-value"></span>
+                                </label>
+                                <input type="range" id="pbi-cod-tc" min="0" value="0">
+                                <div class="slider-scale" data-slider-id="pbi-cod-tc"></div>
+                            </div>
+                            <div id="scale-container">
+                                <label for="pbi-cod-rroe" id="modal-cod-rroe-label">
+                                    <span class="label-text"></span>
+                                    <a id="help-icon-cod_rroe" class="info-icon-link" href="#" target="_blank" title="Open documentation">
+                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="slider-value" id="cod-rroe-value"></span>
+                                </label>
+                                <input type="range" id="pbi-cod-rroe" min="0" value="0">
+                                <div class="slider-scale" data-slider-id="pbi-cod-rroe"></div>
+                            </div>
+                        </div>
+
+                        <div class="modal-reset-container">
+                            <button type="button" id="reset-cod-btn"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-column-right">
+                    <label id="modal-notes-label"></label>
+                    <div class="editor-wrapper">
+                        <div class="editor-toolbar" id="editor-toolbar">
+                            <button type="button" class="editor-btn color-btn" data-cmd="foreColor" data-color-index="1" id="btn-editor-c1">
+                                <div class="editor-color-dot" style="background-color: var(--color-editor-1);"></div>
+                            </button>
+                            <button type="button" class="editor-btn color-btn" data-cmd="foreColor" data-color-index="2" id="btn-editor-c2">
+                                <div class="editor-color-dot" style="background-color: var(--color-editor-2);"></div>
+                            </button>
+                            <button type="button" class="editor-btn color-btn" data-cmd="foreColor" data-color-index="3" id="btn-editor-c3">
+                                <div class="editor-color-dot" style="background-color: var(--color-editor-3);"></div>
+                            </button>
+                            <button type="button" class="editor-btn color-btn" data-cmd="foreColor" data-color-index="4" id="btn-editor-c4">
+                                <div class="editor-color-dot" style="background-color: var(--color-editor-4);"></div>
+                            </button>
+                            
+                            <div class="editor-divider"></div>
+
+                            <button type="button" class="editor-btn" data-cmd="bold" id="btn-editor-bold">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 11h4.5a2.5 2.5 0 0 0 0-5H8v5Zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 0 9v.5A4.5 4.5 0 0 1 18 15.5ZM8 13v5h5.5a2.5 2.5 0 0 0 0-5H8Z"/></svg>
+                            </button>
+                            <button type="button" class="editor-btn" data-cmd="italic" id="btn-editor-italic">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4h-8Z"/></svg>
+                            </button>
+                            <button type="button" class="editor-btn" data-cmd="underline" id="btn-editor-underline">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6Zm-7 2v2h14v-2H5Z"/></svg>
+                            </button>
+                            <button type="button" class="editor-btn" data-cmd="strikeThrough" id="btn-editor-strike">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5zM3 14h18v-2H3v2z"/></svg>
+                            </button>
+
+                            <div class="editor-divider"></div>
+                            
+                            <button type="button" class="editor-btn" data-cmd="createLink" id="btn-editor-link">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                            </button>
+
+                            <div class="editor-divider"></div>
+
+                            <button type="button" class="editor-btn" data-cmd="removeFormat" id="btn-editor-clean">
+                                <svg viewBox="0 0 128 128" width="16" height="16" fill="currentColor">
+                                    <path d="m113.59 79.848c-1.8945-1.8945-3.7656-3.7891-5.6602-1.8945l-41.617 41.617c-1.8945 1.8711 0 3.7656 1.8945 5.6602 1.8945 1.8945 3.7891 3.7891 5.6836 1.8945l41.594-41.617c1.8984-1.8711 0.003907-3.7656-1.8945-5.6602zm-45.293 0.089844c-1.8945 1.8945-3.7891 3.7656-1.8945 5.6602l41.617 41.617c1.8711 1.8945 3.7656 0 5.6602-1.8945 1.8945-1.8945 3.7891-3.7891 1.8945-5.6836l-41.617-41.594c-1.8711-1.8984-3.7656 0-5.6602 1.8945zm22.426-79.938h-69.016c-3.832 0-3.832 0-4.3672 3.832l-1.6211 11.504c-0.53516 3.832-0.53516 3.832 3.2969 3.832h25.305l-9.6992 69.016c-0.53516 3.832-0.53516 3.832 3.2969 3.832h11.504c3.832 0 3.832 0 4.3672-3.832l9.6992-69.016h24.539c3.832 0 3.832 0 4.3672-3.832l1.6211-11.504c0.53906-3.832 0.53906-3.832-3.293-3.832zm-26.75 98.973h-47.883c-4.457 0-4.457 0-4.457 4.457 0 3.5664 0 3.5664 4.457 3.5664h47.883c4.457 0 4.457 0 4.457-3.5664 0-4.457 0-4.457-4.457-4.457z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="pbi-notes" class="editor-content" contenteditable="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="cancel-btn"></button><button id="save-btn"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="settings-modal-title"></h2>
+
+            <div class="settings-grid-layout">
+                
+                <div class="settings-col">
+                    <div class="settings-group">
+                        <strong id="settings-modal-language-label"></strong>
+                        <div id="language-options-container">
+                            <label><input type="radio" name="language-setting" value="de"> <span id="settings-lang-option-de"></span></label>
+                            <label><input type="radio" name="language-setting" value="en"> <span id="settings-lang-option-en"></span></label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <strong id="settings-modal-tshirt-label"></strong>
+                        <div id="tshirt-sizes-options">
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <strong id="settings-modal-scale-label"></strong>
+                        <div id="scale-setting-container">
+                            <label><input type="radio" name="scale-setting" value="metric" checked> <span id="settings-scale-option-metric"></span></label>
+                            <label><input type="radio" name="scale-setting" value="safe"> <span id="settings-scale-option-safe"></span></label>
+                            <label style="display:flex; align-items:center;">
+                                <input type="checkbox" id="setting-show-ref-markers">
+                                <span id="settings-label-show-ref-markers" style="margin-left: 8px;"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <strong id="settings-modal-general-label"></strong>
+                        <div id="general-settings-container">
+                            <label style="display:flex; align-items:center;">
+                                <input type="checkbox" id="setting-show-res-warning">
+                                <span id="settings-label-show-res-warning" style="margin-left: 8px;"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-col">
+                    <div class="settings-group" style="margin-top: 0;">
+                        <strong id="settings-modal-color-label"></strong>
+                        <div id="color-settings-container">
+                            <div class="color-setting-item">
+                                <label id="color-label-complexity" for="color-complexity-setting"></label>
+                                <input type="color" id="color-complexity-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-effort" for="color-effort-setting"></label>
+                                <input type="color" id="color-effort-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-doubt" for="color-doubt-setting"></label>
+                                <input type="color" id="color-doubt-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-bv" for="color-bv-setting"></label>
+                                <input type="color" id="color-bv-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-tc" for="color-tc-setting"></label>
+                                <input type="color" id="color-tc-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-rroe" for="color-rroe-setting"></label>
+                                <input type="color" id="color-rroe-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-total" for="color-total-setting"></label>
+                                <input type="color" id="color-total-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-number-complexity" for="color-number-complexity-setting"></label>
+                                <input type="color" id="color-number-complexity-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-number-effort" for="color-number-effort-setting"></label>
+                                <input type="color" id="color-number-effort-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-number-doubt" for="color-number-doubt-setting"></label>
+                                <input type="color" id="color-number-doubt-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-number-bv" for="color-number-bv-setting"></label>
+                                <input type="color" id="color-number-bv-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-number-tc" for="color-number-tc-setting"></label>
+                                <input type="color" id="color-number-tc-setting">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="color-label-number-rroe" for="color-number-rroe-setting"></label>
+                                <input type="color" id="color-number-rroe-setting">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <strong id="settings-modal-editor-color-label"></strong>
+                        <div id="editor-color-settings-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="color-setting-item">
+                                <label id="label-editor-c1" for="setting-editor-c1"></label>
+                                <input type="color" id="setting-editor-c1">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="label-editor-c2" for="setting-editor-c2"></label>
+                                <input type="color" id="setting-editor-c2">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="label-editor-c3" for="setting-editor-c3"></label>
+                                <input type="color" id="setting-editor-c3">
+                            </div>
+                            <div class="color-setting-item">
+                                <label id="label-editor-c4" for="setting-editor-c4"></label>
+                                <input type="color" id="setting-editor-c4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-reset-container">
+                <button type="button" id="reset-settings-btn"></button>
+            </div>
+
+            <div style="margin-top: 24px; text-align: right;">
+                <button id="settings-cancel-btn"></button><button id="settings-save-btn"></button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+    
+    <script id="config-placeholder" type="application/json"></script>
+    <script id="script-placeholder"></script>
+</body>
+</html>
