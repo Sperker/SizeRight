@@ -1236,15 +1236,23 @@ function setupEventListeners() {
         document.getElementById('modal-tshirt-display').style.display = 'none';
     });
 
-    var toggleRefMarkersBtn = document.getElementById("toggle-ref-markers-btn");
-    if (toggleRefMarkersBtn) {
-        toggleRefMarkersBtn.addEventListener("click", function() {
-            window.showReferenceMarkers = !window.showReferenceMarkers;
-            if (typeof generateSliderScales === 'function') generateSliderScales();
-            if (typeof updateRefMarkerButtonState === 'function') updateRefMarkerButtonState();
-            [].concat(jobSizeSliders, codSliders).forEach(function(s) { if(s && typeof updateActiveScaleValue === 'function') updateActiveScaleValue(s); });
-        });
-    }
+    var buttonIds = ["toggle-ref-markers-btn", "toggle-ref-markers-cod-btn"];
+    buttonIds.forEach(function(id) {
+        var btn = document.getElementById(id);
+        if (btn) {
+            btn.addEventListener("click", function() {
+
+                window.showReferenceMarkers = !window.showReferenceMarkers;
+                
+                if (typeof generateSliderScales === 'function') generateSliderScales();
+                if (typeof updateRefMarkerButtonState === 'function') updateRefMarkerButtonState();
+                
+                [].concat(jobSizeSliders, codSliders).forEach(function(s) { 
+                    if(s && typeof updateActiveScaleValue === 'function') updateActiveScaleValue(s); 
+                });
+            });
+        }
+    });
 
     document.getElementById("reset-cod-btn").addEventListener("click", function() {
         if (typeof markModalAsDirty === 'function') markModalAsDirty();
