@@ -3,15 +3,24 @@
 **A dedicated visualization tool for Agile relative estimation and WSJF prioritization.**
 
 ![Job Size Visualization](images/SizeRight_JobSize_Visualization.jpg)
+
+---
+
 ![WSJF Visualization](images/SizeRight_WSJF_Visualization.jpg)
+
+---
+
 ![Relative Estimation Table](images/SizeRight_RelativeEstimationTable.jpg)
+
+---
+
 ![Edit Backlog Item Modal](images/SizeRight_EditBI_Modal.jpg)
 
 ## Overview
 
 **SizeRight** is an open-source facilitation tool designed for Product Owners, Product Managers, and Epic Owners. It solves the challenge of lengthy, subjective estimation meetings by replacing "gut feelings" with a structured, data-driven process.
 
-It acts as a **tactical pre-processor**—a "visual radiator" for your planning sessions to bridge the gap between vague ideas and concrete economic prioritization using **Weighted Shortest Job First (WSJF)**.
+It acts as a **tactical pre-processor** - a "visual radiator" for your planning sessions to bridge the gap between vague ideas and concrete economic prioritization using **Weighted Shortest Job First (WSJF)**.
 
 > **Note:** SizeRight is a client-side, single-file application. No server, no database, no installation required.
 
@@ -139,10 +148,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-```
-
-### Nächster Schritt
-Möchtest du, dass ich dir passend dazu noch eine `.gitignore` Datei erstelle, damit `node_modules` und die generierten Build-Dateien nicht versehentlich ins Repository hochgeladen werden?
-
-```
