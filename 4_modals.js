@@ -222,8 +222,9 @@ function updateModalNavButtons(currentId) {
 /**
  * Updates the visibility and target of the help icons next to scale labels.
  * <br><b>Logic:</b>
- * Checks the `config.scaleHelpUrls` object. If a URL is defined for a specific metric,
- * it unhides the corresponding icon and sets the href attribute.
+ * Checks the `config.scaleHelpUrls` object. It supports both string values (legacy)
+ * and object values for multilingual support (e.g., { "en": "...", "de": "..." }).
+ * It uses the global `currentLanguage` variable to determine the correct URL.
  */
 function updateHelpIcons() {
     if (!config || !config.scaleHelpUrls) return;
@@ -238,7 +239,21 @@ function updateHelpIcons() {
     ];
 
     mapping.forEach(function(item) {
-        var url = config.scaleHelpUrls[item.key];
+        var configEntry = config.scaleHelpUrls[item.key];
+        var url = "";
+
+        if (typeof configEntry === 'object' && configEntry !== null) {
+            if (configEntry[currentLanguage]) {
+                url = configEntry[currentLanguage];
+            } 
+            else if (configEntry['en']) {
+                url = configEntry['en'];
+            }
+        } 
+        else if (typeof configEntry === 'string') {
+            url = configEntry;
+        }
+
         var iconElement = document.getElementById(item.id);
         
         if (iconElement) {

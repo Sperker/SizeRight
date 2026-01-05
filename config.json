@@ -42,12 +42,30 @@
         "numberRrOe": "#666666"
     },
     "scaleHelpUrls": {
-        "complexity": "",
-        "effort": "",
-        "doubt": "",
-        "cod_bv": "",
-        "cod_tc": "",
-        "cod_rroe": ""
+        "complexity": {
+            "de": "",
+            "en": ""
+        },
+        "effort": {
+            "de": "",
+            "en": ""
+        },
+        "doubt": {
+            "de": "",
+            "en": ""
+        },
+        "cod_bv": {
+            "de": "",
+            "en": ""
+        },
+        "cod_tc": {
+            "de": "",
+            "en": ""
+        },
+        "cod_rroe": {
+            "de": "",
+            "en": ""
+        }
     },
     "defaultColors": {
         "complexity": "#cacde6",
