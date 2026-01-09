@@ -4,6 +4,7 @@
         "btnResetCoD": "Verzögerungskosten zurücksetzen",
         "btnResetSettings": "Einstellungen Zurücksetzen",
         "helpButtonTitle": "Hilfe",
+        "helpIconTooltip": "Dokumentation öffnen",
         "tocTitle": "Inhaltsverzeichnis",
         "pageTitle": "SizeRight",
         "mainHeader": "SizeRight",
@@ -207,19 +208,26 @@
         "btnCsvExportTitle": "Als CSV exportieren",
         "modalTitleCsvExport": "Als CSV-Datei exportieren",
         "csvExportText": "Backlog-Items inklusive aller Schätzungen und Notizen können über diesen Dialog in eine strukturierte CSV-Datei exportiert werden. Dieses Format kann mit Tabellenkalkulationssoftware wie Microsoft Excel, Apple Numbers oder Google Sheets geöffnet werden.\n\nSortierung: Standardmäßig wird die Sortierreihenfolge der aktuellen Ansicht übernommen. Die Sortierung für diese Datei kann unten angepasst werden, ohne den Hauptarbeitsbereich zu beeinflussen.",
-        "btnCsvExportCancel": "Abbrechen",
         "btnCsvExportConfirm": "CSV Exportieren",
+        "btnCsvExportCancel": "Abbrechen",
         "csvExportSortLabel": "Sortiert nach: {criteria} - {direction}",
         "csvHeaderRef": "Referenz-Item",
         "settingsModalGeneralLabel": "Allgemein",
         "settingsLabelShowResWarning": "Auflösungswarnung anzeigen",
-        "tooltipTshirtCodView": "Die T-Shirtgröße kann nur in der Ansicht \"Visualisierung Arbeitsumfang\" gesetzt werden."
+        "tooltipTshirtCodView": "Die T-Shirtgröße kann nur in der Ansicht \"Visualisierung Arbeitsumfang\" gesetzt werden.",
+        "scaleHelp_complexity": "",
+        "scaleHelp_effort": "",
+        "scaleHelp_doubt": "",
+        "scaleHelp_cod_bv": "",
+        "scaleHelp_cod_tc": "",
+        "scaleHelp_cod_rroe": ""
     },
     "en": {
         "btnOpenAnyway": "Open anyway",
         "btnResetCoD": "Reset Cost of Delay",
         "btnResetSettings": "Reset Settings",
         "helpButtonTitle": "Help",
+        "helpIconTooltip": "Open documentation",
         "tocTitle": "Table of Contents",
         "pageTitle": "SizeRight",
         "mainHeader": "SizeRight",
@@ -429,6 +437,12 @@
         "csvHeaderRef": "Reference Item",
         "settingsModalGeneralLabel": "General",
         "settingsLabelShowResWarning": "Show resolution warning",
-        "tooltipTshirtCodView": "The T-shirt size can only be set in the \"Job Size Visualization\" view."
+        "tooltipTshirtCodView": "The T-shirt size can only be set in the \"Job Size Visualization\" view.",
+        "scaleHelp_complexity": "",
+        "scaleHelp_effort": "",
+        "scaleHelp_doubt": "",
+        "scaleHelp_cod_bv": "",
+        "scaleHelp_cod_tc": "",
+        "scaleHelp_cod_rroe": ""
     }
 }

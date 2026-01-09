@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="version" content="0.0.9">
+    <meta name="version" content="0.1.3">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estimation Tool</title>
     <style id="style-placeholder"></style>
@@ -195,7 +195,6 @@
                             <div id="rs-group-header-cod" class="rs-group-header rs-group-cod"></div>
                             <div id="rs-group-header-wsjf" class="rs-group-header rs-group-wsjf"></div>
                         </div>
-
                         
                         <div class="rs-col-header-container rs-grid">
                             <div class="rs-col-header" data-sort-by="complexity">
@@ -538,7 +537,7 @@
 
     <div id="edit-modal" class="modal">
         <div class="modal-content">
-            
+            <div id="tooltip-backdrop"></div>
             <div class="modal-nav-header">
                 <button id="modal-prev-btn" class="modal-nav-text-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
@@ -580,37 +579,63 @@
                             <div id="scale-container">
                                 <label for="pbi-complexity" id="modal-complexity-label">
                                     <span class="label-text"></span>
-                                    <a id="help-icon-complexity" class="info-icon-link" href="#" target="_blank" title="Open documentation">
-                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
-                                        </svg>
-                                    </a>
+                                    
+                                    <div class="help-icon-wrapper pos-top">
+                                        <a id="help-icon-complexity" class="info-icon-link" href="#" target="_blank">
+                                            <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="custom-tooltip">
+                                            <div class="tooltip-header">Complexity</div>
+                                            <div class="tooltip-subheader">Wie komplex ist die Aufgabe?</div>
+                                            </div>
+                                    </div>
+
                                     <span class="slider-value" id="complexity-value"></span>
                                 </label>
                                 <input type="range" id="pbi-complexity" min="0" value="0">
                                 <div class="slider-scale" data-slider-id="pbi-complexity"></div>
                             </div>
+
                             <div id="scale-container">
                                 <label for="pbi-effort" id="modal-effort-label">
                                     <span class="label-text"></span>
-                                    <a id="help-icon-effort" class="info-icon-link" href="#" target="_blank" title="Open documentation">
-                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
-                                        </svg>
-                                    </a>
+                                    
+                                    <div class="help-icon-wrapper">
+                                        <a id="help-icon-effort" class="info-icon-link" href="#" target="_blank">
+                                            <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="custom-tooltip">
+                                            <div class="tooltip-header">Effort</div>
+                                            <div class="tooltip-subheader">Wieviel Arbeit steckt drin?</div>
+                                        </div>
+                                    </div>
+
                                     <span class="slider-value" id="effort-value"></span>
                                 </label>
                                 <input type="range" id="pbi-effort" min="0" value="0">
                                 <div class="slider-scale" data-slider-id="pbi-effort"></div>
                             </div>
+
                             <div id="scale-container">
                                 <label for="pbi-doubt" id="modal-doubt-label">
                                     <span class="label-text"></span>
-                                    <a id="help-icon-doubt" class="info-icon-link" href="#" target="_blank" title="Open documentation">
-                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
-                                        </svg>
-                                    </a>
+                                    
+                                    <div class="help-icon-wrapper pos-bottom">
+                                        <a id="help-icon-doubt" class="info-icon-link" href="#" target="_blank">
+                                            <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="custom-tooltip">
+                                            <div class="tooltip-header">Doubt</div>
+                                            <div class="tooltip-subheader">Unsicherheiten & Risiken</div>
+                                        </div>
+                                    </div>
+
                                     <span class="slider-value" id="doubt-value"></span>
                                 </label>
                                 <input type="range" id="pbi-doubt" min="0" value="0">
@@ -630,43 +655,66 @@
                             <div id="scale-container">
                                 <label for="pbi-cod-bv" id="modal-cod-bv-label">
                                     <span class="label-text"></span>
-                                    <a id="help-icon-cod_bv" class="info-icon-link" href="#" target="_blank" title="Open documentation">
-                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
-                                        </svg>
-                                    </a>
+                                    
+                                    <div class="help-icon-wrapper pos-top">
+                                        <a id="help-icon-cod_bv" class="info-icon-link" href="#" target="_blank">
+                                            <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="custom-tooltip">
+                                            <div class="tooltip-header">Business Value</div>
+                                        </div>
+                                    </div>
+
                                     <span class="slider-value" id="cod-bv-value"></span>
                                 </label>
                                 <input type="range" id="pbi-cod-bv" min="0" value="0">
                                 <div class="slider-scale" data-slider-id="pbi-cod-bv"></div>
                             </div>
+
                             <div id="scale-container">
                                 <label for="pbi-cod-tc" id="modal-cod-tc-label">
                                     <span class="label-text"></span>
-                                    <a id="help-icon-cod_tc" class="info-icon-link" href="#" target="_blank" title="Open documentation">
-                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
-                                        </svg>
-                                    </a>
+                                    
+                                    <div class="help-icon-wrapper">
+                                        <a id="help-icon-cod_tc" class="info-icon-link" href="#" target="_blank">
+                                            <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="custom-tooltip">
+                                            <div class="tooltip-header">Time Criticality</div>
+                                        </div>
+                                    </div>
+
                                     <span class="slider-value" id="cod-tc-value"></span>
                                 </label>
                                 <input type="range" id="pbi-cod-tc" min="0" value="0">
                                 <div class="slider-scale" data-slider-id="pbi-cod-tc"></div>
                             </div>
+
                             <div id="scale-container">
                                 <label for="pbi-cod-rroe" id="modal-cod-rroe-label">
                                     <span class="label-text"></span>
-                                    <a id="help-icon-cod_rroe" class="info-icon-link" href="#" target="_blank" title="Open documentation">
-                                        <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
-                                        </svg>
-                                    </a>
+                                    
+                                    <div class="help-icon-wrapper pos-bottom">
+                                        <a id="help-icon-cod_rroe" class="info-icon-link" href="#" target="_blank">
+                                            <svg class="info-icon-svg" width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m600 75c-289.45 0-525 235.55-525 525s235.55 525 525 525 525-235.55 525-525-235.55-525-525-525zm75 750c0 41.457-33.543 75-75 75s-75-33.543-75-75v-225c0-41.457 33.543-75 75-75s75 33.543 75 75zm-75-375c-41.418 0-75-33.582-75-75 0-41.426 33.582-75 75-75s75 33.574 75 75c0 41.418-33.582 75-75 75z"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="custom-tooltip">
+                                            <div class="tooltip-header">Risk Reduction / Opp. Enablement</div>
+                                        </div>
+                                    </div>
+
                                     <span class="slider-value" id="cod-rroe-value"></span>
                                 </label>
                                 <input type="range" id="pbi-cod-rroe" min="0" value="0">
                                 <div class="slider-scale" data-slider-id="pbi-cod-rroe"></div>
                             </div>
-                        </div>
+</div>
 
                         <div class="modal-reset-container">
                             <button type="button" id="reset-cod-btn"></button>

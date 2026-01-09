@@ -138,7 +138,7 @@
     "initialPbis": [],
     "updateChecker": {
         "enabled": false,
-        "versionUrl": "https://gist.githubusercontent.com/Sperker/d0481bc71d4d5ee5e660e3d5511f13e6/raw/SizeRightVersion.txt",
+        "versionUrl": "https://raw.githubusercontent.com/Sperker/SizeRight/refs/heads/main/SizeRightVersion.json",
         "downloadUrl": "https://github.com/Sperker/SizeRight"
     },
     "pastelColorPalette": [
@@ -206,5 +206,6 @@
         "#E8E2C4",
         "#DEE3C9",
         "#BCC2DC"
-    ]
+    ],
+    "buildNumber": 1498
 }

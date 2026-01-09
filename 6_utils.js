@@ -356,80 +356,99 @@ function compareSemver(a, b) {
  * @returns {Promise<void>|undefined} Returns the fetch promise (for async tracking) or undefined if disabled/failed.
  */
 function checkForUpdates() {
-  try {
-    var meta = document.querySelector('meta[name="version"]');
-    var localVersion = meta ? meta.getAttribute('content') : null;
+    try {
+        var meta = document.querySelector('meta[name="version"]');
+        var localVersion = meta ? meta.getAttribute('content') : null;
 
-    var versionValueEl = document.getElementById('info-version-value');
-    
-    var isEnabled = true;
-    if (config && config.updateChecker && typeof config.updateChecker.enabled === 'boolean') {
-        isEnabled = config.updateChecker.enabled;
-    }
+        var versionValueEl = document.getElementById('info-version-value');
+        
+        var isEnabled = true;
+        if (config && config.updateChecker && typeof config.updateChecker.enabled === 'boolean') {
+            isEnabled = config.updateChecker.enabled;
+        }
 
-    if (!isEnabled) {
+        if (!isEnabled) {
+            if (versionValueEl && localVersion) {
+                versionValueEl.textContent = localVersion;
+                versionValueEl.style.color = ''; 
+            }
+            return;
+        }
+
         if (versionValueEl && localVersion) {
             versionValueEl.textContent = localVersion;
-            versionValueEl.style.color = ''; 
         }
-        return;
-    }
 
-    if (versionValueEl && localVersion) {
-      versionValueEl.textContent = localVersion;
-    }
-
-    if (!config || !config.updateChecker || !config.updateChecker.versionUrl) return;
-
-    return fetch(config.updateChecker.versionUrl, { cache: 'no-store' })
-      .then(function(res){ return res.json(); })
-      .then(function(data){
-        var remoteVersion = (data && (data.version || data.latest)) || null;
-        if (!remoteVersion || !localVersion) return;
-
-        if (compareSemver(remoteVersion, localVersion) > 0) {
-          
-          var dismissedVersion = null;
-          if (typeof window !== 'undefined' && window.localStorage) {
-              dismissedVersion = window.localStorage.getItem('sizeRight_dismissedUpdateVersion');
-          }
-
-          if (versionValueEl) {
-            versionValueEl.textContent = '';
-            var localSpan = document.createElement('span');
-            localSpan.style.color = '#c0392b';
-            localSpan.textContent = localVersion + ' ';
-            var msg = document.createTextNode((config.uiStrings.infoVersionOutdated || 'is outdated, current is:') + ' ');
-            var remoteSpan = document.createElement('span');
-            remoteSpan.style.color = '#27ae60';
-            remoteSpan.textContent = remoteVersion;
-            versionValueEl.appendChild(localSpan);
-            versionValueEl.appendChild(msg);
-            versionValueEl.appendChild(remoteSpan);
-          }
-
-          if (!dismissedVersion || compareSemver(remoteVersion, dismissedVersion) > 0) {
-              showUpdateNotification(remoteVersion, data && data.downloadUrl);
-          }
-
-        } else {
-          if (versionValueEl) {
-            versionValueEl.textContent = '';
-            var okSpan = document.createElement('span');
-            okSpan.style.color = '#27ae60';
-            okSpan.textContent = localVersion + ' ';
-            var okMsg = document.createTextNode(config.uiStrings.infoVersionCurrent || 'is up-to-date');
-            versionValueEl.appendChild(okSpan);
-            versionValueEl.appendChild(okMsg);
-          }
+        if (!config || !config.updateChecker || !config.updateChecker.versionUrl) {
+            return;
         }
-      })
-      .catch(function(err){
-        console.warn('checkForUpdates failed:', err);
-      });
-  } catch (e) {
-    console.warn('checkForUpdates error:', e);
-  }
+
+        var baseUrl = config.updateChecker.versionUrl;
+        var separator = baseUrl.includes('?') ? '&' : '?';
+        var timestamp = Math.floor(Date.now() / 1000); 
+        
+        var targetUrl = baseUrl + separator + 'nocache=' + timestamp;
+
+        //console.log('Update Check URL:', targetUrl);
+
+        return fetch(targetUrl, { cache: 'no-store' })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                
+                var remoteVersion = (data && (data.version || data.latest)) || null;
+
+                if (!remoteVersion || !localVersion) return;
+
+                var comparison = compareSemver(remoteVersion, localVersion);
+
+                if (comparison > 0) {
+                    
+                    var dismissedVersion = null;
+                    if (typeof window !== 'undefined' && window.localStorage) {
+                        dismissedVersion = window.localStorage.getItem('sizeRight_dismissedUpdateVersion');
+                    }
+
+                    if (versionValueEl) {
+                        versionValueEl.textContent = '';
+                        var localSpan = document.createElement('span');
+                        localSpan.style.color = '#c0392b';
+                        localSpan.textContent = localVersion + ' ';
+                        
+                        var msg = document.createTextNode((config.uiStrings.infoVersionOutdated || 'is outdated, current is:') + ' ');
+                        
+                        var remoteSpan = document.createElement('span');
+                        remoteSpan.style.color = '#27ae60';
+                        remoteSpan.textContent = remoteVersion;
+                        
+                        versionValueEl.appendChild(localSpan);
+                        versionValueEl.appendChild(msg);
+                        versionValueEl.appendChild(remoteSpan);
+                    }
+
+                    if (!dismissedVersion || compareSemver(remoteVersion, dismissedVersion) > 0) {
+                        showUpdateNotification(remoteVersion, data && data.downloadUrl);
+                    }
+
+                } else {
+
+                    if (versionValueEl) {
+                        versionValueEl.textContent = '';
+                        var okSpan = document.createElement('span');
+                        okSpan.style.color = '#27ae60';
+                        okSpan.textContent = localVersion + ' ';
+                        var okMsg = document.createTextNode(config.uiStrings.infoVersionCurrent || 'is up-to-date');
+                        versionValueEl.appendChild(okSpan);
+                        versionValueEl.appendChild(okMsg);
+                    }
+                }
+            })
+            .catch(function(err){
+                // Leises Scheitern oder minimaler Log bei Netzwerkfehlern
+                console.warn('Update check failed:', err);
+            });
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 

@@ -220,49 +220,153 @@ function updateModalNavButtons(currentId) {
 
 
 /**
- * Updates the visibility and target of the help icons next to scale labels.
- * <br><b>Logic:</b>
- * Checks the `config.scaleHelpUrls` object. It supports both string values (legacy)
- * and object values for multilingual support (e.g., { "en": "...", "de": "..." }).
- * It uses the global `currentLanguage` variable to determine the correct URL.
+ * Updates the visibility, target, and positioning of the help icons next to scale labels.
+ * * <br><b>Logic:</b>
+ * Implements a "Cascade of Availability" to determine how to render the help icon:
+ * <ol>
+ * <li><b>Priority 1 (External Link):</b> Checks `config.scaleHelpUrls`. If a URL exists for the current language (or English fallback), the icon becomes a clickable link (`<a href>`).</li>
+ * <li><b>Priority 2 (Tooltip):</b> If no URL is found, checks `config.uiStrings` for a matching help text key. If found, the icon becomes a hover-trigger for an HTML tooltip.</li>
+ * <li><b>Priority 3 (Hidden):</b> If neither a URL nor a tooltip text exists, the icon is hidden (`display: none`).</li>
+ * </ol>
+ * * <br><b>Interaction Update:</b>
+ * The tooltip now opens either on <b>click</b> OR after hovering for <b>500ms</b>. It no longer opens immediately on hover via CSS.
+ * * <br><b>DOM Manipulation & Visuals:</b>
+ * To support the advanced CSS tooltip structure, this function performs several dynamic DOM operations:
+ * <ul>
+ * <li><b>Wrapper Generation:</b> Wraps the icon in a `div.help-icon-wrapper`. This wrapper handles the `z-index` stacking context.</li>
+ * <li><b>Positioning Fixes:</b> Applies specific classes (`pos-top`, `pos-bottom`) based on list position.</li>
+ * <li><b>Timer Logic:</b> Uses JS timeouts to handle the 500ms delay requirement.</li>
+ * <li><b>State Cleanup:</b> Safely unwraps and resets elements before re-rendering.</li>
+ * </ul>
  */
 function updateHelpIcons() {
-    if (!config || !config.scaleHelpUrls) return;
+    if (!config) return;
+
+    var backdrop = document.getElementById('tooltip-backdrop');
 
     var mapping = [
-        { key: 'complexity', id: 'help-icon-complexity' },
-        { key: 'effort', id: 'help-icon-effort' },
-        { key: 'doubt', id: 'help-icon-doubt' },
-        { key: 'cod_bv', id: 'help-icon-cod_bv' },
-        { key: 'cod_tc', id: 'help-icon-cod_tc' },
-        { key: 'cod_rroe', id: 'help-icon-cod_rroe' }
+        { key: 'complexity', id: 'help-icon-complexity', langKey: 'scaleHelp_complexity', pos: 'pos-top' },
+        { key: 'effort', id: 'help-icon-effort', langKey: 'scaleHelp_effort', pos: '' },
+        { key: 'doubt', id: 'help-icon-doubt', langKey: 'scaleHelp_doubt', pos: 'pos-bottom' },
+        
+        { key: 'cod_bv', id: 'help-icon-cod_bv', langKey: 'scaleHelp_cod_bv', pos: 'pos-top' },
+        { key: 'cod_tc', id: 'help-icon-cod_tc', langKey: 'scaleHelp_cod_tc', pos: '' },
+        { key: 'cod_rroe', id: 'help-icon-cod_rroe', langKey: 'scaleHelp_cod_rroe', pos: 'pos-bottom' }
     ];
 
     mapping.forEach(function(item) {
-        var configEntry = config.scaleHelpUrls[item.key];
+        var iconElement = document.getElementById(item.id);
+        if (!iconElement) return;
+
+        var configEntry = config.scaleHelpUrls ? config.scaleHelpUrls[item.key] : null;
         var url = "";
 
         if (typeof configEntry === 'object' && configEntry !== null) {
             if (configEntry[currentLanguage]) {
                 url = configEntry[currentLanguage];
-            } 
-            else if (configEntry['en']) {
+            } else if (configEntry['en']) {
                 url = configEntry['en'];
             }
-        } 
-        else if (typeof configEntry === 'string') {
+        } else if (typeof configEntry === 'string') {
             url = configEntry;
         }
 
-        var iconElement = document.getElementById(item.id);
-        
-        if (iconElement) {
-            if (url && url.trim() !== "") {
-                iconElement.style.display = "inline-block";
-                iconElement.href = url;
-            } else {
-                iconElement.style.display = "none";
+        var tooltipHtml = "";
+        if (!url || url.trim() === "") {
+             if (config.uiStrings && config.uiStrings[item.langKey]) {
+                tooltipHtml = config.uiStrings[item.langKey];
             }
+        }
+
+        // Cleanup: Remove existing wrappers from previous renders
+        var parent = iconElement.parentNode;
+        if (parent && parent.classList.contains('help-icon-wrapper')) {
+            var newParent = parent.cloneNode(true); 
+            parent.parentNode.replaceChild(newParent, parent); 
+            parent = newParent; 
+            parent.parentNode.insertBefore(iconElement, parent); 
+            parent.parentNode.removeChild(parent); 
+        }
+
+        // Reset icon properties
+        iconElement.removeAttribute('href');
+        iconElement.removeAttribute('target');
+        iconElement.style.cursor = ''; 
+        iconElement.onclick = null; 
+        
+        if (url && url.trim() !== "") {
+            // Case 1: External Link
+            iconElement.style.display = "inline-block";
+            iconElement.href = url;
+            iconElement.target = "_blank";
+            
+            // CHANGED: Set cursor to 'help' instead of 'pointer' for consistency
+            iconElement.style.cursor = "help"; 
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'help-icon-wrapper';
+            
+            if (item.pos) {
+                wrapper.classList.add(item.pos);
+            }
+            
+            iconElement.parentNode.insertBefore(wrapper, iconElement);
+            wrapper.appendChild(iconElement);
+        } 
+        else if (tooltipHtml && tooltipHtml.trim() !== "") {
+            // Case 2: Tooltip
+            iconElement.style.display = "inline-block";
+            iconElement.style.cursor = "help"; 
+            
+            var wrapper = document.createElement('div');
+            wrapper.className = 'help-icon-wrapper';
+            
+            if (item.pos) {
+                wrapper.classList.add(item.pos);
+            }
+            
+            iconElement.parentNode.insertBefore(wrapper, iconElement);
+            wrapper.appendChild(iconElement);
+            
+            var tooltipDiv = document.createElement('div');
+            tooltipDiv.className = 'custom-tooltip';
+            tooltipDiv.innerHTML = tooltipHtml;
+            wrapper.appendChild(tooltipDiv);
+
+            var hoverTimer = null;
+
+            var showTooltip = function() {
+                tooltipDiv.classList.add('is-visible');
+                if (backdrop) backdrop.classList.add('active');
+            };
+
+            var hideTooltip = function() {
+                tooltipDiv.classList.remove('is-visible');
+                if (backdrop) backdrop.classList.remove('active');
+            };
+
+            wrapper.addEventListener('mouseenter', function() {
+                hoverTimer = setTimeout(function() {
+                    showTooltip();
+                }, 500);
+            });
+
+            wrapper.addEventListener('mouseleave', function() {
+                if (hoverTimer) {
+                    clearTimeout(hoverTimer);
+                    hoverTimer = null;
+                }
+                hideTooltip();
+            });
+
+            wrapper.addEventListener('click', function(e) {
+                if (hoverTimer) clearTimeout(hoverTimer);
+                showTooltip();
+            });
+        } 
+        else {
+            // Case 3: No help available
+            iconElement.style.display = "none";
         }
     });
 }
@@ -375,9 +479,7 @@ function showModal(pbi, options) {
     if (typeof updateResetJobSizeButtonVisibility === 'function') updateResetJobSizeButtonVisibility();
     if (typeof updateResetCoDButtonVisibility === 'function') updateResetCoDButtonVisibility();
 
-    // START CHANGE: Ensure the reference marker toggle button is correctly displayed/hidden based on current PBIs
     if (typeof updateRefMarkerButtonState === 'function') updateRefMarkerButtonState();
-    // END CHANGE
 
     updateHelpIcons();
 

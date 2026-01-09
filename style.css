@@ -52,6 +52,20 @@
     --right-gutter: 5px;
 }
 
+::selection {
+  background-color: #e0e2fb;
+  color: #373b6b;           
+}
+
+::-moz-selection {
+  background-color: #e0e2fb;
+  color: #373b6b;
+}
+
+:focus {
+    outline: none;
+}
+
 /* Globales Box-Sizing für korrekte Höhenberechnung */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -2223,6 +2237,13 @@ input[type="range"]::-moz-range-thumb:active {
     z-index: 1;
 }
 
+.slider-scale span.ref-marker-min:hover,
+.slider-scale span.ref-marker-max:hover {
+    color: #333 !important;
+    background: #e0e0e0 !important;
+    border-color: #ccc !important;
+}
+
 .slider-scale span.ref-marker-min.ref-marker-max {
     background: var(--ref-marker-conflict-bg);
     border-color: #ccc; 
@@ -2242,8 +2263,6 @@ input[type="range"]::-moz-range-thumb:active {
 
 .info-icon-link {
     display: none; 
-    margin-left: 2px;
-    vertical-align: middle;
     text-decoration: none;
     line-height: 0;
 }
@@ -3502,8 +3521,8 @@ position: relative;
     border: 1px solid var(--border-color);
     border-radius: 6px;
     background-color: #fff;
-    height: 467px; 
-    min-height: 467px;
+    height: 471px; 
+    min-height: 471px;
     overflow: hidden;
     flex-grow: 0;
 }
@@ -3606,3 +3625,179 @@ position: relative;
     cursor: pointer;
 }
 
+/* ==========================================================================
+   15. TOOLTIP SYSTEM (Styles, Backdrop & Layout Fixes)
+   ========================================================================== */
+
+/* --- A. MODAL LAYOUT --- */
+
+#edit-modal .modal-body-split {
+    overflow: visible !important;
+    z-index: auto; 
+}
+
+#edit-modal .modal-column-left {
+    overflow: visible !important;
+    position: relative;
+    z-index: auto !important; 
+}
+
+#edit-modal .modal-column-right {
+    position: relative;
+    z-index: 10;
+    overflow: visible !important;
+}
+
+/* --- B. STACKING LOGIC & BACKDROP  --- */
+
+#tooltip-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(243 242 242 / 65%);
+    border-radius: 12px;
+    z-index: 50; 
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#tooltip-backdrop.active {
+    opacity: 1;
+}
+
+.help-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0px;
+    cursor: help;
+    padding-top: 0px;
+    z-index: 20; 
+}
+
+.help-icon-wrapper:hover {
+    z-index: 60 !important; 
+}
+
+/* --- C. TOOLTIP VISUALS --- */
+
+.custom-tooltip {
+    visibility: hidden;
+    width: 500px;
+    background-color: #ffffff;
+    color: #333333;
+    text-align: left;
+    border-radius: 6px;
+    padding: 16px;
+    position: absolute;
+    left: 100%; 
+    top: 50%;
+    margin-left: 12px;
+    transform: translateY(-50%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    border: 1px solid #e0e0e0;
+    z-index: 9999 !important;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: normal;
+}
+
+.custom-tooltip.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*.help-icon-wrapper:hover .custom-tooltip {
+    visibility: visible;
+    opacity: 1;
+}*/
+
+.custom-tooltip::after {
+    content: "";
+    position: absolute;
+    right: 100%; 
+    top: 50%; 
+    margin-top: -8px; 
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent #ffffff transparent transparent; 
+}
+
+/* --- D. POSITION MODIFIERS --- */
+
+.help-icon-wrapper.pos-top .custom-tooltip {
+    transform: translateY(-15%); 
+}
+
+.help-icon-wrapper.pos-top .custom-tooltip::after {
+    top: 15%; 
+}
+
+.help-icon-wrapper.pos-bottom .custom-tooltip {
+    transform: translateY(-85%); 
+}
+
+.help-icon-wrapper.pos-bottom .custom-tooltip::after {
+    top: 85%; 
+}
+
+/* --- E. CONTENT STYLING --- */
+
+.tooltip-header {
+    margin-bottom: 9px;
+    color: #4ba663;
+    padding-bottom: 4px;
+    display: inline-block;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background-color: #4ba663;
+    font-weight: bold;
+}
+
+.tooltip-subheader {
+    font-weight: bold;
+    color: #4ba663;
+    margin: 10px 0px 18px 0px;
+}
+
+.tooltip-list {
+    padding-left: 18px;
+    margin: 0;
+}
+.tooltip-list li { margin-bottom: 6px; }
+
+.tooltip-sublist {
+    padding-left: 15px;
+    margin-top: 4px;
+    list-style-type: circle;
+    color: #444;
+}
+
+/* --- F. MOBILE FALLBACK --- */
+
+@media (max-width: 768px) {
+    .custom-tooltip {
+        width: 300px;
+        left: auto;
+        right: 0; 
+        top: 100%;
+        transform: none !important;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .custom-tooltip::after {
+        top: auto;
+        bottom: 100%;
+        right: 20px;
+        left: auto;
+        margin-top: 0;
+        border-color: transparent transparent #ffffff transparent;
+    }
+}

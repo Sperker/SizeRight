@@ -18,6 +18,9 @@
  * 4. Validate Popup Interactions:
  * - T-Shirt size picker functionality.
  * - Relative Sizing value picker (updating logic).
+ * 5. Verify Help Icon System:
+ * - Wrapper generation and positioning logic.
+ * - Backdrop interactions.
  */
 
 // Defines globals needed for module execution/loading immediately
@@ -241,6 +244,8 @@ const setupDom = () => {
             <input type="checkbox" id="setting-show-ref-markers">
             <input type="checkbox" id="setting-show-res-warning">
         </div>
+        
+        <div id="tooltip-backdrop"></div> 
         <div id="update-notification-container"></div>
         <div id="panel-wsjf-viz" class="hidden"></div>
         `;
@@ -316,21 +321,120 @@ describe('Modal Navigation & Labels Tests', () => {
 });
 
 describe('Help Icons', () => {
-    beforeEach(() => { setupGlobalState(); setupDom(); });
-    
-    test('should show configured help icons', () => {
-        updateHelpIcons();
-        const complexityIcon = document.getElementById('help-icon-complexity');
-        const effortIcon = document.getElementById('help-icon-effort');
-        
-        // Complexity is in config
-        expect(complexityIcon.style.display).toBe('inline-block');
-        expect(complexityIcon.getAttribute('href')).toBe('http://help.com/complexity');
-        
-        // Effort is not in config
-        expect(effortIcon.style.display).toBe('none');
+        beforeEach(() => {
+            // Setup DOM
+            document.body.innerHTML = `
+                <div id="tooltip-backdrop"></div>
+                <a id="help-icon-complexity"></a>
+                <a id="help-icon-effort"></a>
+            `;
+            
+            // Mock config
+            global.config = {
+                uiStrings: {
+                    scaleHelp_complexity: 'Complexity Help',
+                    scaleHelp_effort: 'Effort Help'
+                },
+                scaleHelpUrls: null
+            };
+            
+            // Activate Fake Timers to control setTimeout
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            // Restore Real Timers after tests
+            jest.useRealTimers();
+        });
+
+        test('should create wrapper and tooltip structure when help text is present', () => {
+            updateHelpIcons();
+            
+            const icon = document.getElementById('help-icon-complexity');
+            const wrapper = icon.parentNode;
+            
+            expect(wrapper.className).toContain('help-icon-wrapper');
+            expect(wrapper.className).toContain('pos-top');
+            
+            const tooltip = wrapper.querySelector('.custom-tooltip');
+            expect(tooltip).not.toBeNull();
+            expect(tooltip.innerHTML).toBe('Complexity Help');
+            expect(icon.style.display).toBe('inline-block');
+        });
+
+        test('should set external link when url is present', () => {
+            global.config.scaleHelpUrls = {
+                effort: 'http://example.com/effort'
+            };
+            
+            updateHelpIcons();
+            
+            const icon = document.getElementById('help-icon-effort');
+            
+            // CHANGED: We now EXPECT the wrapper to be present for consistent CSS styling
+            expect(icon.parentNode.className).toContain('help-icon-wrapper');
+            
+            expect(icon.href).toBe('http://example.com/effort');
+            expect(icon.target).toBe('_blank');
+        });
+
+        test('should hide icon when no help is available', () => {
+            // Remove help text for complexity
+            global.config.uiStrings.scaleHelp_complexity = '';
+            
+            updateHelpIcons();
+            
+            const icon = document.getElementById('help-icon-complexity');
+            expect(icon.style.display).toBe('none');
+        });
+
+        test('should toggle backdrop active class on hover after delay', () => {
+            updateHelpIcons();
+            
+            const icon = document.getElementById('help-icon-complexity');
+            const wrapper = icon.parentNode;
+            const backdrop = document.getElementById('tooltip-backdrop');
+            const tooltip = wrapper.querySelector('.custom-tooltip');
+            
+            // 1. Simulate Mouse Enter
+            const mouseEnterEvent = new Event('mouseenter');
+            wrapper.dispatchEvent(mouseEnterEvent);
+            
+            // IMMEDIATE CHECK: Should still be hidden (timer running)
+            expect(backdrop.classList.contains('active')).toBe(false);
+            expect(tooltip.classList.contains('is-visible')).toBe(false);
+
+            // 2. Fast-forward time by 500ms
+            jest.advanceTimersByTime(500);
+
+            // CHECK AFTER DELAY: Should now be visible
+            expect(backdrop.classList.contains('active')).toBe(true);
+            expect(tooltip.classList.contains('is-visible')).toBe(true);
+
+            // 3. Simulate Mouse Leave
+            const mouseLeaveEvent = new Event('mouseleave');
+            wrapper.dispatchEvent(mouseLeaveEvent);
+            
+            expect(backdrop.classList.contains('active')).toBe(false);
+            expect(tooltip.classList.contains('is-visible')).toBe(false);
+        });
+
+        test('should show tooltip immediately on click', () => {
+            updateHelpIcons();
+            
+            const icon = document.getElementById('help-icon-complexity');
+            const wrapper = icon.parentNode;
+            const backdrop = document.getElementById('tooltip-backdrop');
+            const tooltip = wrapper.querySelector('.custom-tooltip');
+
+            // Simulate Click
+            wrapper.click();
+
+            // CHECK: Should be visible immediately without waiting
+            expect(backdrop.classList.contains('active')).toBe(true);
+            expect(tooltip.classList.contains('is-visible')).toBe(true);
+        });
     });
-});
 
 describe('updateResetCoDButtonVisibility', () => {
     beforeEach(() => { setupGlobalState(); setupDom(); });
